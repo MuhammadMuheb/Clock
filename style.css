@@ -18,11 +18,20 @@
   --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 16px 32px -12px rgba(15, 23, 42, 0.12);
   --tick-strong: rgba(43, 46, 54, 0.32);
   --tick-soft: rgba(43, 46, 54, 0.12);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --accent-glow-a: rgba(230, 83, 63, 0.14);
+  --accent-glow-b: rgba(80, 110, 230, 0.12);
   /* Scales with whichever viewport dimension is smaller, so the clock
      never overflows a short (landscape) or narrow (portrait) viewport. */
   --clock-size: clamp(180px, 42vmin, 320px);
   --gap: clamp(14px, 4vmin, 32px);
   color-scheme: light;
+}
+@media (min-width: 1600px) {
+  :root {
+    --clock-size: clamp(180px, 34vmin, 380px);
+  }
 }
 body.dark {
   --page-bg-start: #1c1d21;
@@ -38,6 +47,8 @@ body.dark {
   --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -12px rgba(0, 0, 0, 0.55);
   --tick-strong: rgba(242, 242, 243, 0.4);
   --tick-soft: rgba(242, 242, 243, 0.14);
+  --accent-glow-a: rgba(239, 107, 88, 0.16);
+  --accent-glow-b: rgba(90, 120, 220, 0.14);
   color-scheme: dark;
 }
 
@@ -52,12 +63,34 @@ body.dark {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease, box-shadow 0.3s ease;
 }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
 
 html, body {
   height: 100%;
 }
+html {
+  overflow-x: hidden;
+}
 body {
+  position: relative;
   background: linear-gradient(180deg, var(--page-bg-start), var(--page-bg-end));
+}
+
+/* Soft, decorative glow so large viewports don't read as empty around the
+   card. Fixed and behind everything; ignored by assistive tech. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 12% 8%, var(--accent-glow-a), transparent 40%),
+    radial-gradient(circle at 88% 92%, var(--accent-glow-b), transparent 40%);
 }
 
 /* ---------- Hero: title, clock and toggle, anchored in one static card ---------- */
@@ -79,7 +112,7 @@ body {
   padding: clamp(20px, 5vmin, 48px) clamp(18px, 6vmin, 44px);
   background: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: 28px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
 }
 
@@ -190,13 +223,15 @@ body {
   letter-spacing: 0.02em;
 }
 .digital #digital-date {
-  font-size: clamp(11px, 2.2vmin, 13px);
+  font-size: clamp(12px, 2.2vmin, 13px);
 }
 
 .mode-switch {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-height: 44px;
   border: 1px solid transparent;
   padding: clamp(8px, 2vmin, 10px) clamp(16px, 4vmin, 20px);
   border-radius: 999px;
@@ -244,7 +279,7 @@ body.dark .mode-switch .icon-moon {
 .feature {
   background: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: 18px;
+  border-radius: var(--radius-md);
   padding: 24px 22px;
   color: var(--ink);
 }
@@ -270,7 +305,7 @@ body.dark .mode-switch .icon-moon {
   text-align: center;
   padding: 0 16px clamp(24px, 6vmin, 40px);
   color: var(--muted-color);
-  font-size: clamp(11px, 2vmin, 13px);
+  font-size: clamp(12px, 2vmin, 13px);
 }
 
 /* On short viewports (e.g. landscape phones), drop decorative chrome so
@@ -279,5 +314,13 @@ body.dark .mode-switch .icon-moon {
   .brand,
   .digital {
     display: none;
+  }
+}
+
+/* On large monitors, let the card grow a little so it doesn't look lost
+   in a sea of empty space (paired with the larger --clock-size above). */
+@media (min-width: 1600px) {
+  .hero-card {
+    max-width: 480px;
   }
 }

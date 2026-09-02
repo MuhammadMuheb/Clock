@@ -27,6 +27,7 @@ const timeFormatter = new Intl.DateTimeFormat(undefined, {
   hour: "2-digit",
   minute: "2-digit",
   second: "2-digit",
+  hour12: true,
 });
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   weekday: "long",
@@ -36,9 +37,12 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 
 const updateTime = () => {
   const date = new Date(),
-    secToDeg = (date.getSeconds() / 60) * 360,
-    minToDeg = (date.getMinutes() / 60) * 360,
-    hrToDeg = (date.getHours() / 12) * 360;
+    seconds = date.getSeconds(),
+    minutes = date.getMinutes() + seconds / 60,
+    hours = (date.getHours() % 12) + minutes / 60,
+    secToDeg = (seconds / 60) * 360,
+    minToDeg = (minutes / 60) * 360,
+    hrToDeg = (hours / 12) * 360;
 
   secondHand.style.transform = `rotate(${secToDeg}deg)`;
   minuteHand.style.transform = `rotate(${minToDeg}deg)`;

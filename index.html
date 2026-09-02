@@ -12,11 +12,11 @@
     <meta name="theme-color" content="#101113" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Analog Clock | JavaScript Analog Clock with Dark Mode" />
+    <meta property="og:title" content="Clock &mdash; Live Analog Clock" />
     <meta property="og:description" content="A responsive analog clock built with HTML, CSS and JavaScript, featuring a light/dark mode toggle." />
     <meta property="og:image" content="https://muhammadmuheb.github.io/Clock/download.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Analog Clock | JavaScript Analog Clock with Dark Mode" />
+    <meta name="twitter:title" content="Clock &mdash; Live Analog Clock" />
     <meta name="twitter:description" content="A responsive analog clock built with HTML, CSS and JavaScript, featuring a light/dark mode toggle." />
     <meta name="twitter:image" content="https://muhammadmuheb.github.io/Clock/download.png" />
 
@@ -29,77 +29,81 @@
 </head>
 
 <body>
-    <section class="hero">
-        <div class="hero-card">
-            <header class="brand">
-                <h1>Analog Clock</h1>
-                <p>Live time, wherever you are.</p>
-            </header>
+    <div class="backdrop" aria-hidden="true"></div>
 
-            <div class="clock">
-                <label style="--i: 1"><span>1</span></label>
-                <label style="--i: 2"><span>2</span></label>
-                <label style="--i: 3"><span>3</span></label>
-                <label style="--i: 4"><span>4</span></label>
-                <label style="--i: 5"><span>5</span></label>
-                <label style="--i: 6"><span>6</span></label>
-                <label style="--i: 7"><span>7</span></label>
-                <label style="--i: 8"><span>8</span></label>
-                <label style="--i: 9"><span>9</span></label>
-                <label style="--i: 10"><span>10</span></label>
-                <label style="--i: 11"><span>11</span></label>
-                <label style="--i: 12"><span>12</span></label>
+    <main>
+        <section class="hero">
+            <div class="hero-card">
+                <header class="brand">
+                    <h1>Analog Clock</h1>
+                    <p>Live time, wherever you are.</p>
+                </header>
 
-                <div class="indicator">
-                    <span class="hand hour"></span>
-                    <span class="hand minute"></span>
-                    <span class="hand second"></span>
+                <div class="clock" role="img" aria-label="Analog clock">
+                    <label style="--i: 1" aria-hidden="true"><span>1</span></label>
+                    <label style="--i: 2" aria-hidden="true"><span>2</span></label>
+                    <label style="--i: 3" aria-hidden="true"><span>3</span></label>
+                    <label style="--i: 4" aria-hidden="true"><span>4</span></label>
+                    <label style="--i: 5" aria-hidden="true"><span>5</span></label>
+                    <label style="--i: 6" aria-hidden="true"><span>6</span></label>
+                    <label style="--i: 7" aria-hidden="true"><span>7</span></label>
+                    <label style="--i: 8" aria-hidden="true"><span>8</span></label>
+                    <label style="--i: 9" aria-hidden="true"><span>9</span></label>
+                    <label style="--i: 10" aria-hidden="true"><span>10</span></label>
+                    <label style="--i: 11" aria-hidden="true"><span>11</span></label>
+                    <label style="--i: 12" aria-hidden="true"><span>12</span></label>
+
+                    <div class="indicator" aria-hidden="true">
+                        <span class="hand hour"></span>
+                        <span class="hand minute"></span>
+                        <span class="hand second"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="digital">
-                <span id="digital-time">--:--:--</span>
-                <span id="digital-date">&nbsp;</span>
-            </div>
+                <div class="digital">
+                    <span id="digital-time">--:--:--</span>
+                    <span id="digital-date">&nbsp;</span>
+                </div>
 
-            <button type="button" class="mode-switch" aria-pressed="false">
-                <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <button type="button" class="mode-switch" aria-pressed="false">
+                    <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                    </svg>
+                    <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <span class="mode-label">Dark Mode</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="features" aria-label="Features">
+            <article class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                </svg>
+                <h2>Always Accurate</h2>
+                <p>Synced to your device's clock. The hour and minute hands sweep continuously, just like a real dial.</p>
+            </article>
+            <article class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
                     <circle cx="12" cy="12" r="4" />
-                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
                 </svg>
-                <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                <h2>Light &amp; Dark Themes</h2>
+                <p>Switch modes with one tap. Your preference is remembered on your next visit.</p>
+            </article>
+            <article class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="4" y="2" width="10" height="16" rx="2" />
+                    <rect x="16" y="7" width="4" height="11" rx="1" />
                 </svg>
-                <span class="mode-label">Dark Mode</span>
-            </button>
-        </div>
-    </section>
-
-    <main class="features">
-        <article class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 7v5l3 2" />
-            </svg>
-            <h2>Always Accurate</h2>
-            <p>Synced to your device's clock and updated every second, down to the minute and hour hand.</p>
-        </article>
-        <article class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-                <circle cx="12" cy="12" r="4" />
-            </svg>
-            <h2>Light &amp; Dark Themes</h2>
-            <p>Switch modes with one tap. Your preference is remembered on your next visit.</p>
-        </article>
-        <article class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="4" y="2" width="10" height="16" rx="2" />
-                <rect x="16" y="7" width="4" height="11" rx="1" />
-            </svg>
-            <h2>Built for Every Screen</h2>
-            <p>The dial scales fluidly to fit phones, tablets and desktops, in portrait or landscape.</p>
-        </article>
+                <h2>Built for Every Screen</h2>
+                <p>The dial scales fluidly to fit phones, tablets and desktops, in portrait or landscape.</p>
+            </article>
+        </section>
     </main>
 
     <footer class="site-footer">
