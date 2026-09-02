@@ -9,19 +9,40 @@
   --white-color: #fff;
   --black-color: #18191a;
   --red-color: #e74c3c;
+  --muted-color: #6b7280;
+  --shadow-outer: rgba(15, 23, 42, 0.18);
+  --tick-strong: rgba(24, 25, 26, 0.35);
+  --tick-soft: rgba(24, 25, 26, 0.12);
   /* Scales with whichever viewport dimension is smaller, so the clock
      never overflows a short (landscape) or narrow (portrait) viewport. */
-  --clock-size: clamp(200px, 58vmin, 400px);
-  --gap: clamp(16px, 6vmin, 60px);
+  --clock-size: clamp(190px, 52vmin, 380px);
+  --gap: clamp(16px, 6vmin, 56px);
   color-scheme: light;
 }
 body.dark {
-  --primary-color: #242526;
+  --primary-color: #202124;
   --white-color: #18191a;
-  --black-color: #fff;
+  --black-color: #f5f5f5;
   --red-color: #e74c3c;
+  --muted-color: #9aa0a6;
+  --shadow-outer: rgba(0, 0, 0, 0.65);
+  --tick-strong: rgba(245, 245, 245, 0.4);
+  --tick-soft: rgba(245, 245, 245, 0.14);
   color-scheme: dark;
 }
+
+::selection {
+  background: var(--red-color);
+  color: #fff;
+}
+
+*,
+*::before,
+*::after {
+  transition: background-color 0.35s ease, color 0.35s ease,
+    border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
 html, body {
   height: 100%;
 }
@@ -31,9 +52,34 @@ body {
   min-height: 100dvh;
   align-items: center;
   justify-content: center;
-  background: var(--primary-color);
+  background: radial-gradient(circle at 50% 32%, var(--white-color) 0%, var(--primary-color) 65%);
   padding: 24px 16px;
 }
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 4vmin, 36px);
+  width: 100%;
+}
+
+.brand {
+  text-align: center;
+  color: var(--black-color);
+}
+.brand h1 {
+  font-size: clamp(22px, 5vmin, 34px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.brand p {
+  margin-top: 4px;
+  font-size: clamp(12px, 2.6vmin, 15px);
+  font-weight: 400;
+  color: var(--muted-color);
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -48,8 +94,22 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--white-color);
-  box-shadow: inset 0 25px 45px rgba(0, 0, 0, 0.245), inset 0 25px 45px rgba(0, 0, 0, 0.1245);
+  box-shadow: inset 0 25px 45px rgba(0, 0, 0, 0.245),
+    inset 0 25px 45px rgba(0, 0, 0, 0.1245),
+    0 25px 50px -12px var(--shadow-outer);
   position: relative;
+}
+/* Minute/hour tick marks, masked down to a thin ring near the rim */
+.clock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--tick-strong) 0deg 2deg, transparent 2deg 30deg),
+    repeating-conic-gradient(var(--tick-soft) 0deg 1deg, transparent 1deg 6deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 78%, #000 80% 90%, transparent 93%);
+  mask-image: radial-gradient(circle, transparent 0 78%, #000 80% 90%, transparent 93%);
+  pointer-events: none;
 }
 .clock label {
   position: absolute;
@@ -100,20 +160,70 @@ body {
   width: calc(var(--clock-size) * 0.02);
   background: var(--black-color);
 }
+
 .mode-switch {
-  padding: clamp(8px, 2vmin, 10px) clamp(14px, 4vmin, 20px);
-  border-radius: 8px;
-  font-size: clamp(16px, 4.2vmin, 22px);
-  font-weight: 400;
-  font-style: oblique;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: clamp(8px, 2vmin, 10px) clamp(16px, 4vmin, 22px);
+  border-radius: 999px;
+  font-size: clamp(14px, 3.6vmin, 17px);
+  font-weight: 500;
   color: var(--white-color);
   background: var(--black-color);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   user-select: none;
+  transition: background-color 0.35s ease, color 0.35s ease,
+    transform 0.15s ease, box-shadow 0.2s ease;
+}
+.mode-switch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.mode-switch:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 .mode-switch:focus-visible {
   outline: 2px solid var(--red-color);
-  outline-offset: 2px;
+  outline-offset: 3px;
+}
+.mode-switch .icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+.mode-switch .icon-moon {
+  display: none;
+}
+body.dark .mode-switch .icon-sun {
+  display: none;
+}
+body.dark .mode-switch .icon-moon {
+  display: block;
+}
+
+.credit {
+  text-align: center;
+  font-size: clamp(11px, 2.2vmin, 13px);
+  color: var(--muted-color);
+}
+.credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.credit a:hover {
+  color: var(--red-color);
+}
+
+/* On short viewports (e.g. landscape phones), drop decorative chrome so
+   the clock and its toggle are always fully visible without scrolling. */
+@media (max-height: 430px) {
+  .brand,
+  .credit {
+    display: none;
+  }
 }

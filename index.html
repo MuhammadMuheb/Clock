@@ -21,33 +21,57 @@
     <meta name="twitter:image" content="https://muhammadmuheb.github.io/Clock/download.png" />
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fff' stroke='%2318191a' stroke-width='6'/%3E%3Cline x1='50' y1='50' x2='50' y2='24' stroke='%2318191a' stroke-width='7' stroke-linecap='round'/%3E%3Cline x1='50' y1='50' x2='70' y2='58' stroke='%2318191a' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%23e74c3c'/%3E%3C/svg%3E" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="clock">
-            <label style="--i: 1"><span>1</span></label>
-            <label style="--i: 2"><span>2</span></label>
-            <label style="--i: 3"><span>3</span></label>
-            <label style="--i: 4"><span>4</span></label>
-            <label style="--i: 5"><span>5</span></label>
-            <label style="--i: 6"><span>6</span></label>
-            <label style="--i: 7"><span>7</span></label>
-            <label style="--i: 8"><span>8</span></label>
-            <label style="--i: 9"><span>9</span></label>
-            <label style="--i: 10"><span>10</span></label>
-            <label style="--i: 11"><span>11</span></label>
-            <label style="--i: 12"><span>12</span></label>
+    <div class="page">
+        <header class="brand">
+            <h1>Analog Clock</h1>
+            <p>Live time, wherever you are.</p>
+        </header>
 
-            <div class="indicator">
-                <span class="hand hour"></span>
-                <span class="hand minute"></span>
-                <span class="hand second"></span>
+        <main class="container">
+            <div class="clock">
+                <label style="--i: 1"><span>1</span></label>
+                <label style="--i: 2"><span>2</span></label>
+                <label style="--i: 3"><span>3</span></label>
+                <label style="--i: 4"><span>4</span></label>
+                <label style="--i: 5"><span>5</span></label>
+                <label style="--i: 6"><span>6</span></label>
+                <label style="--i: 7"><span>7</span></label>
+                <label style="--i: 8"><span>8</span></label>
+                <label style="--i: 9"><span>9</span></label>
+                <label style="--i: 10"><span>10</span></label>
+                <label style="--i: 11"><span>11</span></label>
+                <label style="--i: 12"><span>12</span></label>
+
+                <div class="indicator">
+                    <span class="hand hour"></span>
+                    <span class="hand minute"></span>
+                    <span class="hand second"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="mode-switch" role="button" tabindex="0" aria-pressed="false">Dark Mode</div>
+            <button type="button" class="mode-switch" aria-pressed="false">
+                <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                </svg>
+                <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <span class="mode-label">Dark Mode</span>
+            </button>
+        </main>
+
+        <footer class="credit">
+            <p>Built with HTML, CSS &amp; JavaScript &middot; <a href="https://github.com/MuhammadMuheb/Clock" target="_blank" rel="noopener">View on GitHub</a></p>
+        </footer>
     </div>
     <script src="index.js"></script>
 </body>
