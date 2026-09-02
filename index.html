@@ -7,17 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clock</title>
-    <meta name="description" content="A responsive analog clock built with HTML, CSS and JavaScript, featuring a light/dark mode toggle. Works on desktop, tablet and mobile." />
+    <meta name="description" content="Free online analog clock that shows your exact local time and date automatically, wherever you are in the world. Clean, responsive design with a one-tap light/dark mode toggle, on desktop, tablet and mobile." />
+    <meta name="keywords" content="online clock, analog clock, live clock, digital clock, world clock, dark mode clock, free clock website" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Muhammad Muheb" />
+    <link rel="canonical" href="https://muhammadmuheb.github.io/Clock/" />
     <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#101113" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Clock &mdash; Live Analog Clock" />
-    <meta property="og:description" content="A responsive analog clock built with HTML, CSS and JavaScript, featuring a light/dark mode toggle." />
+    <meta property="og:site_name" content="Clock" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://muhammadmuheb.github.io/Clock/" />
+    <meta property="og:title" content="Clock" />
+    <meta property="og:description" content="Free online analog clock that shows your exact local time automatically, wherever you are in the world. Includes a one-tap light/dark mode toggle." />
     <meta property="og:image" content="https://muhammadmuheb.github.io/Clock/download.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Clock &mdash; Live Analog Clock" />
-    <meta name="twitter:description" content="A responsive analog clock built with HTML, CSS and JavaScript, featuring a light/dark mode toggle." />
+    <meta name="twitter:title" content="Clock" />
+    <meta name="twitter:description" content="Free online analog clock that shows your exact local time automatically, wherever you are in the world. Includes a one-tap light/dark mode toggle." />
     <meta name="twitter:image" content="https://muhammadmuheb.github.io/Clock/download.png" />
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fff' stroke='%2318191a' stroke-width='6'/%3E%3Cline x1='50' y1='50' x2='50' y2='24' stroke='%2318191a' stroke-width='7' stroke-linecap='round'/%3E%3Cline x1='50' y1='50' x2='70' y2='58' stroke='%2318191a' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%23e74c3c'/%3E%3C/svg%3E" />
@@ -26,6 +33,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Clock",
+        "url": "https://muhammadmuheb.github.io/Clock/",
+        "description": "Free online analog clock that shows your exact local time and date automatically, wherever you are in the world, with a light/dark mode toggle.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -40,18 +64,18 @@
                 </header>
 
                 <div class="clock" role="img" aria-label="Analog clock">
-                    <label style="--i: 1" aria-hidden="true"><span>1</span></label>
-                    <label style="--i: 2" aria-hidden="true"><span>2</span></label>
-                    <label style="--i: 3" aria-hidden="true"><span>3</span></label>
-                    <label style="--i: 4" aria-hidden="true"><span>4</span></label>
-                    <label style="--i: 5" aria-hidden="true"><span>5</span></label>
-                    <label style="--i: 6" aria-hidden="true"><span>6</span></label>
-                    <label style="--i: 7" aria-hidden="true"><span>7</span></label>
-                    <label style="--i: 8" aria-hidden="true"><span>8</span></label>
-                    <label style="--i: 9" aria-hidden="true"><span>9</span></label>
-                    <label style="--i: 10" aria-hidden="true"><span>10</span></label>
-                    <label style="--i: 11" aria-hidden="true"><span>11</span></label>
-                    <label style="--i: 12" aria-hidden="true"><span>12</span></label>
+                    <div class="clock-number" style="--i: 1" aria-hidden="true"><span>1</span></div>
+                    <div class="clock-number" style="--i: 2" aria-hidden="true"><span>2</span></div>
+                    <div class="clock-number" style="--i: 3" aria-hidden="true"><span>3</span></div>
+                    <div class="clock-number" style="--i: 4" aria-hidden="true"><span>4</span></div>
+                    <div class="clock-number" style="--i: 5" aria-hidden="true"><span>5</span></div>
+                    <div class="clock-number" style="--i: 6" aria-hidden="true"><span>6</span></div>
+                    <div class="clock-number" style="--i: 7" aria-hidden="true"><span>7</span></div>
+                    <div class="clock-number" style="--i: 8" aria-hidden="true"><span>8</span></div>
+                    <div class="clock-number" style="--i: 9" aria-hidden="true"><span>9</span></div>
+                    <div class="clock-number" style="--i: 10" aria-hidden="true"><span>10</span></div>
+                    <div class="clock-number" style="--i: 11" aria-hidden="true"><span>11</span></div>
+                    <div class="clock-number" style="--i: 12" aria-hidden="true"><span>12</span></div>
 
                     <div class="indicator" aria-hidden="true">
                         <span class="hand hour"></span>
@@ -63,6 +87,7 @@
                 <div class="digital">
                     <span id="digital-time">--:--:--</span>
                     <span id="digital-date">&nbsp;</span>
+                    <span id="digital-tz">&nbsp;</span>
                 </div>
 
                 <button type="button" class="mode-switch" aria-pressed="false">
@@ -97,6 +122,14 @@
             </article>
             <article class="feature">
                 <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                    <path d="M12 3a9 9 0 0 1 0 18M3 12h18" />
+                </svg>
+                <h2>Your Local Time, Automatically</h2>
+                <p>Detects your device's timezone the moment the page loads, so the time shown is always correct for where you are.</p>
+            </article>
+            <article class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="4" y="2" width="10" height="16" rx="2" />
                     <rect x="16" y="7" width="4" height="11" rx="1" />
                 </svg>
@@ -105,10 +138,6 @@
             </article>
         </section>
     </main>
-
-    <footer class="site-footer">
-        <p>&copy; <span id="year"></span> Analog Clock &middot; Built with HTML, CSS &amp; JavaScript</p>
-    </footer>
 
     <script src="index.js"></script>
 </body>

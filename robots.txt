@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muhammadmuheb.github.io/Clock/sitemap.xml

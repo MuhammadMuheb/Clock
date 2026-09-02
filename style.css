@@ -157,13 +157,13 @@ body {
   mask-image: radial-gradient(circle, transparent 0 78%, #000 80% 90%, transparent 93%);
   pointer-events: none;
 }
-.clock label {
+.clock-number {
   position: absolute;
   inset: calc(var(--clock-size) * 0.05);
   text-align: center;
   transform: rotate(calc(var(--i) * (360deg / 12)));
 }
-.clock label span {
+.clock-number span {
   display: inline-block;
   font-size: calc(var(--clock-size) * 0.075);
   font-weight: 600;
@@ -224,6 +224,12 @@ body {
 }
 .digital #digital-date {
   font-size: clamp(12px, 2.2vmin, 13px);
+}
+.digital #digital-tz {
+  font-size: clamp(10px, 1.8vmin, 12px);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.75;
 }
 
 .mode-switch {
@@ -299,13 +305,6 @@ body.dark .mode-switch .icon-moon {
   font-weight: 400;
   line-height: 1.5;
   color: var(--muted-color);
-}
-
-.site-footer {
-  text-align: center;
-  padding: 0 16px clamp(24px, 6vmin, 40px);
-  color: var(--muted-color);
-  font-size: clamp(12px, 2vmin, 13px);
 }
 
 /* On short viewports (e.g. landscape phones), drop decorative chrome so

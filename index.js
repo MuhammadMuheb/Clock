@@ -6,7 +6,7 @@ const body = document.querySelector("body"),
   modeLabel = document.querySelector(".mode-label"),
   digitalTime = document.getElementById("digital-time"),
   digitalDate = document.getElementById("digital-date"),
-  yearEl = document.getElementById("year");
+  digitalTz = document.getElementById("digital-tz");
 
 const setMode = (isDarkMode) => {
   body.classList.toggle("dark", isDarkMode);
@@ -35,6 +35,20 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
   day: "numeric",
 });
 
+// Automatic timezone detection: the browser's Intl API already resolves
+// the visitor's own system timezone, so anyone opening the page anywhere
+// in the world sees their correct local time with no dropdown, no lookup
+// service, and no location permission prompt.
+const detectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const formatUtcOffset = (date) => {
+  const offsetMinutes = -date.getTimezoneOffset();
+  const sign = offsetMinutes >= 0 ? "+" : "-";
+  const abs = Math.abs(offsetMinutes);
+  const hours = Math.floor(abs / 60);
+  const minutes = abs % 60;
+  return `GMT${sign}${hours}${minutes ? ":" + String(minutes).padStart(2, "0") : ""}`;
+};
+
 const updateTime = () => {
   const date = new Date(),
     seconds = date.getSeconds(),
@@ -50,8 +64,7 @@ const updateTime = () => {
 
   digitalTime.textContent = timeFormatter.format(date);
   digitalDate.textContent = dateFormatter.format(date);
+  digitalTz.textContent = `${detectedTimeZone} · ${formatUtcOffset(date)}`;
 };
 updateTime();
 setInterval(updateTime, 1000);
-
-yearEl.textContent = new Date().getFullYear();
