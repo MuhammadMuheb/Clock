@@ -4,8 +4,6 @@ A responsive analog clock built with plain HTML, CSS and JavaScript, with a ligh
 
 **Live demo:** https://muhammadmuheb.github.io/Clock/
 
-![Deploy to GitHub Pages](https://github.com/MuhammadMuheb/Clock/actions/workflows/deploy.yml/badge.svg)
-
 ![Analog clock preview](download.png)
 
 ## Features

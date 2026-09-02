@@ -3,7 +3,10 @@ const body = document.querySelector("body"),
   minuteHand = document.querySelector(".minute"),
   secondHand = document.querySelector(".second"),
   modeSwitch = document.querySelector(".mode-switch"),
-  modeLabel = document.querySelector(".mode-label");
+  modeLabel = document.querySelector(".mode-label"),
+  digitalTime = document.getElementById("digital-time"),
+  digitalDate = document.getElementById("digital-date"),
+  yearEl = document.getElementById("year");
 
 const setMode = (isDarkMode) => {
   body.classList.toggle("dark", isDarkMode);
@@ -20,8 +23,19 @@ modeSwitch.addEventListener("click", () => {
   setMode(!body.classList.contains("dark"));
 });
 
+const timeFormatter = new Intl.DateTimeFormat(undefined, {
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+});
+
 const updateTime = () => {
-  let date = new Date(),
+  const date = new Date(),
     secToDeg = (date.getSeconds() / 60) * 360,
     minToDeg = (date.getMinutes() / 60) * 360,
     hrToDeg = (date.getHours() / 12) * 360;
@@ -29,6 +43,11 @@ const updateTime = () => {
   secondHand.style.transform = `rotate(${secToDeg}deg)`;
   minuteHand.style.transform = `rotate(${minToDeg}deg)`;
   hourHand.style.transform = `rotate(${hrToDeg}deg)`;
+
+  digitalTime.textContent = timeFormatter.format(date);
+  digitalDate.textContent = dateFormatter.format(date);
 };
 updateTime();
 setInterval(updateTime, 1000);
+
+yearEl.textContent = new Date().getFullYear();

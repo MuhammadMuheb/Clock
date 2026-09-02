@@ -5,29 +5,39 @@
   font-family: "Poppins", sans-serif;
 }
 :root {
-  --primary-color: #f6f7fb;
+  --page-bg-start: #f3f4f8;
+  --page-bg-end: #e8eaf0;
+  --surface: #ffffff;
+  --surface-border: rgba(15, 23, 42, 0.07);
+  --ink: #2b2e36;
   --white-color: #fff;
-  --black-color: #18191a;
-  --red-color: #e74c3c;
+  --black-color: #2b2e36;
+  --red-color: #e6533f;
   --muted-color: #6b7280;
-  --shadow-outer: rgba(15, 23, 42, 0.18);
-  --tick-strong: rgba(24, 25, 26, 0.35);
-  --tick-soft: rgba(24, 25, 26, 0.12);
+  --shadow-outer: rgba(15, 23, 42, 0.1);
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 16px 32px -12px rgba(15, 23, 42, 0.12);
+  --tick-strong: rgba(43, 46, 54, 0.32);
+  --tick-soft: rgba(43, 46, 54, 0.12);
   /* Scales with whichever viewport dimension is smaller, so the clock
      never overflows a short (landscape) or narrow (portrait) viewport. */
-  --clock-size: clamp(190px, 52vmin, 380px);
-  --gap: clamp(16px, 6vmin, 56px);
+  --clock-size: clamp(180px, 42vmin, 320px);
+  --gap: clamp(14px, 4vmin, 32px);
   color-scheme: light;
 }
 body.dark {
-  --primary-color: #202124;
-  --white-color: #18191a;
-  --black-color: #f5f5f5;
-  --red-color: #e74c3c;
-  --muted-color: #9aa0a6;
-  --shadow-outer: rgba(0, 0, 0, 0.65);
-  --tick-strong: rgba(245, 245, 245, 0.4);
-  --tick-soft: rgba(245, 245, 245, 0.14);
+  --page-bg-start: #1c1d21;
+  --page-bg-end: #101114;
+  --surface: #202126;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --ink: #f2f2f3;
+  --white-color: #1a1b1e;
+  --black-color: #f2f2f3;
+  --red-color: #ef6b58;
+  --muted-color: #9a9ea6;
+  --shadow-outer: rgba(0, 0, 0, 0.55);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -12px rgba(0, 0, 0, 0.55);
+  --tick-strong: rgba(242, 242, 243, 0.4);
+  --tick-soft: rgba(242, 242, 243, 0.14);
   color-scheme: dark;
 }
 
@@ -39,54 +49,57 @@ body.dark {
 *,
 *::before,
 *::after {
-  transition: background-color 0.35s ease, color 0.35s ease,
-    border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 html, body {
   height: 100%;
 }
 body {
-  display: flex;
-  min-height: 100vh;
-  min-height: 100dvh;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 50% 32%, var(--white-color) 0%, var(--primary-color) 65%);
-  padding: 24px 16px;
+  background: linear-gradient(180deg, var(--page-bg-start), var(--page-bg-end));
 }
 
-.page {
+/* ---------- Hero: title, clock and toggle, anchored in one static card ---------- */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.hero-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(14px, 4vmin, 36px);
+  gap: var(--gap);
   width: 100%;
+  max-width: 420px;
+  padding: clamp(20px, 5vmin, 48px) clamp(18px, 6vmin, 44px);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 28px;
+  box-shadow: var(--card-shadow);
 }
 
 .brand {
   text-align: center;
-  color: var(--black-color);
+  color: var(--ink);
 }
 .brand h1 {
-  font-size: clamp(22px, 5vmin, 34px);
+  font-size: clamp(20px, 4.4vmin, 28px);
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 .brand p {
   margin-top: 4px;
-  font-size: clamp(12px, 2.6vmin, 15px);
+  font-size: clamp(12px, 2.4vmin, 14px);
   font-weight: 400;
   color: var(--muted-color);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--gap);
-}
-.container .clock {
+.clock {
   display: flex;
   height: var(--clock-size);
   width: var(--clock-size);
@@ -96,7 +109,7 @@ body {
   background: var(--white-color);
   box-shadow: inset 0 25px 45px rgba(0, 0, 0, 0.245),
     inset 0 25px 45px rgba(0, 0, 0, 0.1245),
-    0 25px 50px -12px var(--shadow-outer);
+    0 12px 24px -8px var(--shadow-outer);
   position: relative;
 }
 /* Minute/hour tick marks, masked down to a thin ring near the rim */
@@ -124,7 +137,7 @@ body {
   color: var(--black-color);
   transform: rotate(calc(var(--i) * (-360deg / 12)));
 }
-.container .indicator {
+.indicator {
   position: absolute;
   height: calc(var(--clock-size) * 0.025);
   width: calc(var(--clock-size) * 0.025);
@@ -161,38 +174,52 @@ body {
   background: var(--black-color);
 }
 
+.digital {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: calc(var(--gap) * -0.6);
+  color: var(--muted-color);
+}
+.digital #digital-time {
+  font-size: clamp(15px, 3.4vmin, 19px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.digital #digital-date {
+  font-size: clamp(11px, 2.2vmin, 13px);
+}
+
 .mode-switch {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: none;
-  padding: clamp(8px, 2vmin, 10px) clamp(16px, 4vmin, 22px);
+  border: 1px solid transparent;
+  padding: clamp(8px, 2vmin, 10px) clamp(16px, 4vmin, 20px);
   border-radius: 999px;
-  font-size: clamp(14px, 3.6vmin, 17px);
+  font-size: clamp(13px, 3.2vmin, 15px);
   font-weight: 500;
-  color: var(--white-color);
-  background: var(--black-color);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  color: var(--surface);
+  background: var(--ink);
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.35s ease, color 0.35s ease,
-    transform 0.15s ease, box-shadow 0.2s ease;
 }
 .mode-switch:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 .mode-switch:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 .mode-switch:focus-visible {
   outline: 2px solid var(--red-color);
   outline-offset: 3px;
 }
 .mode-switch .icon {
-  width: 1.1em;
-  height: 1.1em;
+  width: 1.05em;
+  height: 1.05em;
   flex-shrink: 0;
 }
 .mode-switch .icon-moon {
@@ -205,25 +232,52 @@ body.dark .mode-switch .icon-moon {
   display: block;
 }
 
-.credit {
-  text-align: center;
-  font-size: clamp(11px, 2.2vmin, 13px);
+/* ---------- Feature section, below the fold ---------- */
+.features {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px clamp(48px, 8vmin, 88px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.feature {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  padding: 24px 22px;
+  color: var(--ink);
+}
+.feature-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--red-color);
+  margin-bottom: 12px;
+}
+.feature h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.feature p {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--muted-color);
 }
-.credit a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.credit a:hover {
-  color: var(--red-color);
+
+.site-footer {
+  text-align: center;
+  padding: 0 16px clamp(24px, 6vmin, 40px);
+  color: var(--muted-color);
+  font-size: clamp(11px, 2vmin, 13px);
 }
 
 /* On short viewports (e.g. landscape phones), drop decorative chrome so
    the clock and its toggle are always fully visible without scrolling. */
 @media (max-height: 430px) {
   .brand,
-  .credit {
+  .digital {
     display: none;
   }
 }
