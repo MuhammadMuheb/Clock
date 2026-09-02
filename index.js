@@ -4,15 +4,26 @@ const body = document.querySelector("body"),
   secondHand = document.querySelector(".second"),
   modeSwitch = document.querySelector(".mode-switch");
   
-if (localStorage.getItem("mode") === "Dark Mode") {
-  body.classList.add("dark");
-  modeSwitch.textContent = "Light Mode";
-}
-modeSwitch.addEventListener("click", () => {
-  body.classList.toggle("dark");
-  const isDarkMode = body.classList.contains("dark");
+const setMode = (isDarkMode) => {
+  body.classList.toggle("dark", isDarkMode);
   modeSwitch.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+  modeSwitch.setAttribute("aria-pressed", isDarkMode);
   localStorage.setItem("mode", isDarkMode ? "Dark Mode" : "Light Mode");
+};
+
+if (localStorage.getItem("mode") === "Dark Mode") {
+  setMode(true);
+}
+
+modeSwitch.addEventListener("click", () => {
+  setMode(!body.classList.contains("dark"));
+});
+
+modeSwitch.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    setMode(!body.classList.contains("dark"));
+  }
 });
 
 const updateTime = () => {
